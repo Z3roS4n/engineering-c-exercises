@@ -1,34 +1,25 @@
 #include <stdio.h>
+#define N 3
 
 int main() {
-  int x, y, z, a, b, c, r;
+  int nums[N * 2];
+  int res[N];
+  int r = 0;
 
-  printf("Inserisci primo numero: \n");
-  scanf("%d%d%d", &x, &y, &z);
-
-  printf("Inserisci secondo numero: \n");
-  scanf("%d%d%d", &a, &b, &c);
-
-  int res1 = (z + c);
-  if(res1 > 9) {
-    res1 = res1 % 10;
-    r = 1;
+  for(int i = 0; i < 2; i++) {
+    printf("Inserisci il numero %d > ", i + 1);
+    scanf("%d%d%d", &nums[0 + 3 * i], &nums[1 + 3 * i], &nums[2 + 3 * i]);
   }
 
-  int res2 = (y + b + r);
-  r = 0;
-  if(res2> 9) {
-    res2 = res2 % 10;
-    r = 1;
+  for(int i = 0; i < N; i++) {
+    res[i] = (nums[i] + nums[i + 3] + r);
+    r = res[i] / 10;
+    res[i] = res[i] % 10;
   }
 
-  int res3 = (x + a + r);
-  r = 0;
-  if(res3 > 9) {
-    res3 = res3 % 10;
-    r = 1;
-  }
-
-  printf("%d%d%d%d", r, res3, res2, res1);
+  if(r) printf("%d", r);
+  for(int i = 0; i < N; i++) 
+    printf("%d", res[i]);
+    
   return 0;
 }
